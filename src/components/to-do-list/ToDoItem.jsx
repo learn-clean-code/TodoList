@@ -1,22 +1,22 @@
-import { useState } from 'react'
-import CheckBox from './CheckBox'
-import ToDoText from './ToDoText'
+import { useState } from "react"
+import CheckBox from "./CheckBox"
+import ToDoText from "./ToDoText"
 
-function ToDoItem({ toDo }) {
-  const [isChecked, setIsChecked] = useState(false)
+function ToDoItem({ id, content, isDone }) {
+  const [isChecked, setIsChecked] = useState(isDone)
 
   const handleCheckButton = () => {
     setIsChecked(!isChecked)
   }
 
   return (
-    <div className="flex justify-between py-5 ">
+    <div className="flex justify-between py-5">
       <ToDoText
         isChecked={isChecked}
         handleCheckButton={handleCheckButton}
-        toDo={toDo}
+        content={content}
       />
-      <CheckBox isChecked={isChecked} onChange={setIsChecked} />
+      <CheckBox id={id} isChecked={isChecked} onChange={setIsChecked} />
     </div>
   )
 }

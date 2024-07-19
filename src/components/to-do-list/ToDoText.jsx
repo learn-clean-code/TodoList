@@ -1,10 +1,10 @@
-function ToDoText({ isChecked, handleCheckButton, toDo }) {
+function ToDoText({ isChecked, handleCheckButton, content }) {
   return (
     <div
       className={`${isChecked ? 'text-gray-400 line-through' : 'text-inherit'} cursor-pointer`}
       onClick={handleCheckButton}
     >
-      {toDo.content}
+      {content}
     </div>
   )
 }
