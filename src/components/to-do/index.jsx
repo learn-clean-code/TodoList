@@ -8,7 +8,7 @@ function ToDo() {
 
   useEffect(() => {
     initTodos()
-  }, [initTodos])
+  }, [])
 
   return (
     <div className="px-7 py-9">
