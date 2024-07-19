@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import AddToDo from './AddToDo'
+import ToDoEditor from './ToDoEditor'
 import ToDoItem from './ToDoItem'
 
 const mockData = [
@@ -21,12 +21,20 @@ const mockData = [
 ]
 
 function ToDoList() {
-  const [toDo, setToDo] = useState(mockData)
+  const [toDos, setToDos] = useState(mockData)
+
+  const onCreate = (content) => {
+    const newToDo = { id: 3, isDone: false, content: content }
+
+    setToDos([...toDos, newToDo])
+  }
 
   return (
     <div className="px-7 py-9">
-      <ToDoItem />
-      <AddToDo />
+      {toDos.map((toDo) => (
+        <ToDoItem key={toDo.id} toDo={toDo} />
+      ))}
+      <ToDoEditor onCreate={onCreate} />
     </div>
   )
 }
