@@ -1,4 +1,4 @@
-function CheckButton({ isChecked, onChange }) {
+function CheckBox({ isChecked, onChange }) {
   return (
     <div className="relative">
       <input
@@ -26,4 +26,4 @@ function CheckButton({ isChecked, onChange }) {
   )
 }
 
-export default CheckButton
+export default CheckBox
