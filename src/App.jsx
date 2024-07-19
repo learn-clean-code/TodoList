@@ -1,9 +1,12 @@
+import ToDoList from './components/to-do-list'
+
 function App() {
   return (
-    <>
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
-      <div>dd</div>
-    </>
+    <div className="w-full h-screen py-32 bg-[#e7e6df]">
+      <div className="w-96 mx-auto bg-white rounded shadow-md">
+        <ToDoList />
+      </div>
+    </div>
   )
 }
 
