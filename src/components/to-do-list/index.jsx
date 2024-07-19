@@ -2,42 +2,46 @@ import { useEffect, useReducer, useRef } from "react"
 import ToDoEditor from "./ToDoEditor"
 import ToDoItem from "./ToDoItem"
 
-function reducer(state, action) {
+function todoReducer(state, action) {
   let nextState
 
   switch (action.type) {
-    case "INIT":
+    case "INIT_TODOS":
       return action.data
-    case "CREATE": {
+    case "ADD_TODOS": {
       nextState = [...state, action.data]
       break
     }
   }
 
-  localStorage.setItem("toDo", JSON.stringify(nextState))
+  localStorage.setItem("toDos", JSON.stringify(nextState))
   return nextState
 }
 
 function ToDoList() {
-  const [data, dispatch] = useReducer(reducer, [])
-  const idRef = useRef(0)
+  const [toDos, dispatchToDos] = useReducer(todoReducer, [])
+  const nextIdRef = useRef(0)
 
   useEffect(() => {
-    const storedData = localStorage.getItem("toDo")
-    if (storedData) {
-      const parsedData = JSON.parse(storedData)
-      dispatch({
-        type: "INIT",
-        data: parsedData,
-      })
+    const storedTodos = localStorage.getItem("toDo")
+    if (storedTodos) {
+      try {
+        const parsedTodos = JSON.parse(storedTodos)
+        dispatchToDos({
+          type: "INIT_TODOS",
+          todo: parsedTodos,
+        })
+      } catch (error) {
+        console.error("toDo데이터 parsing에 실패했습니다:", error)
+      }
     }
   }, [])
 
-  const onCreate = (content) => {
-    dispatch({
-      type: "CREATE",
+  const handleCreateTodo = (content) => {
+    dispatchToDos({
+      type: "ADD_TODOS",
       data: {
-        id: idRef.current++,
+        id: nextIdRef.current++,
         content,
         isDone: false,
       },
@@ -46,10 +50,10 @@ function ToDoList() {
 
   return (
     <div className="px-7 py-9">
-      {data.map((toDo) => (
+      {toDos.map((toDo) => (
         <ToDoItem key={toDo.id} {...toDo} />
       ))}
-      <ToDoEditor onCreate={onCreate} />
+      <ToDoEditor onCreate={handleCreateTodo} />
     </div>
   )
 }
