@@ -1,0 +1,29 @@
+.todo-list-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.todo-list-item + .todo-list-item {
+  margin-top: 20px;
+}
+
+.todo-list-item__contents {
+  font-size: 14px;
+}
+
+.todo-list-item__checkbox {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  border: 1px solid var(--black-100);
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.todo-list-item__checkbox:checked {
+  background-color: var(--violet-100);
+}
+
+.todo-list-item__active {
+  text-decoration: line-through;
+}
