@@ -1,0 +1,9 @@
+.todo-layout {
+  background-color: white;
+  border-radius: 10px;
+  width: 340px;
+}
+
+.todo-layout + .todo-layout {
+  margin-top: 10px;
+}
