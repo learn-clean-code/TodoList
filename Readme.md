@@ -13,3 +13,5 @@ Pinterest 및 Behance에서 간단한 디자인을 정해 그 중 하나의 기�
 ### 사용방법
 
 해당 레포지토리에 Fork를 한 다음에 본인이름 브랜치 만들고 Upstream Repository에 동일한 이름으로 PR을 올려주세요 :)
+
+[Fork부터 PR까지](https://seungwubaek.github.io/tools/git/contributing_using_pull_request/)
