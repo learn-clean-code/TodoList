@@ -1,0 +1,31 @@
+.todo-form {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px 0;
+}
+
+.todo-form__legend {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--violet-100);
+}
+
+.todo-form__input {
+  border: 1px solid var(--black-100);
+  border-radius: 4px;
+  height: 36px;
+  padding: 10px;
+}
+
+.todo-form__input::placeholder {
+  color: var(--black-50);
+}
+
+.todo-form__submit {
+  padding: 7px;
+  margin-left: auto;
+  color: var(--violet-100);
+  background-color: var(--violet-50);
+  border-radius: 4px;
+}
