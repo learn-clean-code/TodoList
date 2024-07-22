@@ -2,7 +2,7 @@ import { ChangeEventHandler, useState } from "react"
 
 interface Props {
   defaultValue?: string
-  validateFn?: (value: string) => void
+  validateFn?: (value: string) => boolean
 }
 
 export default function useInput(props: Props) {
@@ -11,10 +11,11 @@ export default function useInput(props: Props) {
 
   const onChangeValue: ChangeEventHandler<HTMLInputElement> = (event) => setValue(event.target.value)
   const onResetValue = () => setValue("")
+
   const onBlurTouched = () => setIsTouched(true)
+  const onResetTouched = () => setIsTouched(false)
 
   const isValid = props.validateFn ? props.validateFn(value) : true
-
   const hasError = !isValid && isTouched
 
   return {
@@ -22,6 +23,7 @@ export default function useInput(props: Props) {
     onChangeValue,
     onResetValue,
     onBlurTouched,
+    onResetTouched,
     hasError,
   }
 }
