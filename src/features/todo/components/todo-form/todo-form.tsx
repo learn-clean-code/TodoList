@@ -10,7 +10,7 @@ interface Props {
 }
 
 export default function TodoForm(props: Props) {
-  const { value, onChangeValue, onResetValue, hasError, onBlurTouched, onResetTouched } = useInput({
+  const { value, onChangeValue, onResetValue, hasError } = useInput({
     defaultValue: "",
     validateFn: (value: string) => greaterThanMinLength(value, 1),
   })
@@ -18,7 +18,7 @@ export default function TodoForm(props: Props) {
   const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault()
 
-    if (isEmpty(value)) return
+    if (isEmpty(value) || hasError) return
 
     const newTodo: Todo = {
       id: new Date().getTime(),
@@ -28,7 +28,6 @@ export default function TodoForm(props: Props) {
 
     props.onCreateTodo(newTodo)
     onResetValue()
-    onResetTouched()
   }
 
   const isDisabled = isEmpty(value) || hasError
@@ -46,9 +45,8 @@ export default function TodoForm(props: Props) {
         value={value}
         onChange={onChangeValue}
         className={classes["todo-form__input"]}
-        onBlur={onBlurTouched}
       />
-      {hasError && <p className={classes["todo-form__error"]}>유효하지 않은 입력값이에요.</p>}
+      {hasError && <p className={classes["todo-form__error"]}>최소 2글자 이상 입력해주세요.</p>}
       <button className={classes["todo-form__submit"]} disabled={isDisabled}>
         SAVE
       </button>
