@@ -38,3 +38,9 @@
 .todo-form__invalid .todo-form__input {
   border: 1px solid var(--error);
 }
+
+.todo-form__submit:disabled,
+.todo-form__invalid .todo-form__submit {
+  color: var(--black-50);
+  background-color: #f7f7f7;
+}
