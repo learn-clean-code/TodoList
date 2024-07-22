@@ -1,7 +1,7 @@
 import { ChangeEventHandler } from "react"
 import { Input } from "shared/@common/components"
 import { useCheckbox } from "shared/@common/hooks"
-import type { Todo } from "features/todo"
+import type { Todo } from "features/todo/types"
 import classes from "./todo-list-item.module.css"
 
 export default function TodoListItem(props: Todo & { onUpdateTodo: (todoId: number) => void }) {

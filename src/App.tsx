@@ -1,5 +1,6 @@
 import { useState } from "react"
-import { Todo, TodoForm, TodoHeader, TodoLayout, TodoList } from "features/todo"
+import { TodoForm, TodoHeader, TodoLayout, TodoList } from "features/todo/components"
+import type { Todo } from "features/todo/types"
 import { Layout } from "shared/@common/components"
 
 export default function App() {

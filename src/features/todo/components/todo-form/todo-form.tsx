@@ -1,7 +1,7 @@
 import { FormEventHandler } from "react"
 import { Input } from "shared/@common/components"
 import { useInput } from "shared/@common/hooks"
-import { Todo } from "features/todo"
+import type { Todo } from "features/todo/types"
 import classes from "./todo-form.module.css"
 
 interface Props {

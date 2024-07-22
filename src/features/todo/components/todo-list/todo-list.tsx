@@ -1,6 +1,6 @@
 import React from "react"
-import { TodoListItem } from "features/todo"
-import type { Todo } from "features/todo"
+import { TodoListItem } from "features/todo/components"
+import type { Todo } from "features/todo/types"
 import classes from "./todo-list.module.css"
 
 interface Props {
