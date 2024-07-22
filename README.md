@@ -8,6 +8,7 @@
 
 ## 폴더 구조
 
+```
 ├── features
 │   └── todo
 │   ├── components
@@ -27,6 +28,7 @@
 │   ├── hooks
 │   └── utils
 └── styles
+```
 
 폴더 구조는 기능별로 작업했습니다.(Feature Driven Development 방식) 간단한 프로젝트에서는 파일 유형별로 작성하는게 더 이득일 수 있지만 기능별로 작업해본적이 많지가 않아 실험적으로 적용해보았습니다.
 
