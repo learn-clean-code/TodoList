@@ -1,7 +1,7 @@
 import { FormEventHandler } from "react"
 import { Input } from "shared/@common/components"
 import { useInput } from "shared/@common/hooks"
-import { isNotEmpty } from "shared/@common/utils"
+import { greaterThanMinLength, isEmpty } from "shared/@common/utils"
 import type { Todo } from "features/todo/types"
 import classes from "./todo-form.module.css"
 
@@ -10,13 +10,15 @@ interface Props {
 }
 
 export default function TodoForm(props: Props) {
-  const { value, onChangeValue, onResetValue, hasError, onBlurTouched } = useInput({
+  const { value, onChangeValue, onResetValue, hasError, onBlurTouched, onResetTouched } = useInput({
     defaultValue: "",
-    validateFn: isNotEmpty,
+    validateFn: (value: string) => greaterThanMinLength(value, 1),
   })
 
   const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
     event.preventDefault()
+
+    if (isEmpty(value)) return
 
     const newTodo: Todo = {
       id: new Date().getTime(),
@@ -26,7 +28,10 @@ export default function TodoForm(props: Props) {
 
     props.onCreateTodo(newTodo)
     onResetValue()
+    onResetTouched()
   }
+
+  const isDisabled = isEmpty(value) || hasError
 
   return (
     <form
@@ -44,7 +49,9 @@ export default function TodoForm(props: Props) {
         onBlur={onBlurTouched}
       />
       {hasError && <p className={classes["todo-form__error"]}>유효하지 않은 입력값이에요.</p>}
-      <button className={classes["todo-form__submit"]}>SAVE</button>
+      <button className={classes["todo-form__submit"]} disabled={isDisabled}>
+        SAVE
+      </button>
     </form>
   )
 }
