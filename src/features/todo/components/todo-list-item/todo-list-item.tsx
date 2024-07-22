@@ -5,7 +5,7 @@ import type { Todo } from "features/todo/types"
 import classes from "./todo-list-item.module.css"
 
 export default function TodoListItem(props: Todo & { onUpdateTodo: (todoId: number) => void }) {
-  const { isChecked, onChangeChecked } = useCheckbox({ defaultValue: false })
+  const { onChangeChecked } = useCheckbox({ defaultValue: props.isDone })
 
   const handleChangeChecked: ChangeEventHandler<HTMLInputElement> = (event) => {
     onChangeChecked(event)
@@ -22,7 +22,7 @@ export default function TodoListItem(props: Todo & { onUpdateTodo: (todoId: numb
       <Input
         type="checkbox"
         id={`todo-list-item-${props.id}`}
-        checked={isChecked}
+        checked={props.isDone}
         onChange={handleChangeChecked}
         className={classes["todo-list-item__checkbox"]}
       />
