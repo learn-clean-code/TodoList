@@ -7,4 +7,7 @@
   /* Violet */
   --violet-50: #dfdcf0;
   --violet-100: #8881b6;
+
+  /* Error */
+  --error: red;
 }

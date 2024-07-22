@@ -29,3 +29,12 @@
   background-color: var(--violet-50);
   border-radius: 4px;
 }
+
+.todo-form__error {
+  font-size: 12px;
+  color: var(--error);
+}
+
+.todo-form__invalid .todo-form__input {
+  border: 1px solid var(--error);
+}
