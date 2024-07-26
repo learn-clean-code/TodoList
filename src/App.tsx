@@ -1,5 +1,15 @@
+import { Global, ThemeProvider } from '@emotion/react';
+import theme from '@/styles/theme';
+import ToDoApp from '@/components/ToDoApp';
+import globalStyle from '@/styles/globalStyle';
+
 function App() {
-  return <>앱이다</>;
+  return (
+    <ThemeProvider theme={theme}>
+      <Global styles={globalStyle} />
+      <ToDoApp />
+    </ThemeProvider>
+  );
 }
 
 export default App;
