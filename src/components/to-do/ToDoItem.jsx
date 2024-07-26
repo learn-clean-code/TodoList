@@ -1,6 +1,5 @@
 import { useState } from "react"
 import CheckBox from "./CheckBox"
-import ToDoText from "./ToDoText"
 
 function ToDoItem({ id, content, isDone }) {
   const [isChecked, setIsChecked] = useState(isDone)
@@ -11,11 +10,12 @@ function ToDoItem({ id, content, isDone }) {
 
   return (
     <div className="flex justify-between py-5">
-      <ToDoText
-        isChecked={isChecked}
-        handleCheckButton={handleCheckButton}
-        content={content}
-      />
+      <div
+        className={`${isChecked ? "text-gray-400 line-through" : "text-inherit"} cursor-pointer`}
+        onClick={handleCheckButton}
+      >
+        {content}
+      </div>
       <CheckBox id={id} isChecked={isChecked} onChange={setIsChecked} />
     </div>
   )

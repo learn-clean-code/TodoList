@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { useTodo } from "../../hooks/useToDo"
-import ToDoEditor from "./ToDoEditor"
+import ToDoEditor from "./AddTodoInput"
 import ToDoList from "./ToDoList"
 
 function ToDo() {
