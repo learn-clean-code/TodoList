@@ -4,7 +4,7 @@ export const TODO_ACTIONS = {
 }
 
 const todoActionHandlers = {
-  [TODO_ACTIONS.INIT_TODOS]: (state, action) => {
+  [TODO_ACTIONS.INIT_TODOS]: (action) => {
     return action.data
   },
   [TODO_ACTIONS.ADD_TODOS]: (state, action) => {
