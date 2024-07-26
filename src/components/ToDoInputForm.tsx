@@ -17,6 +17,7 @@ export default function ToDoInputForm({ addTodo }: TodoInputProps) {
     const newTodo = {
       id: `${Date.now()}`,
       text: inputText,
+      isDone: false,
     };
     addTodo(newTodo);
     setInputText('');
@@ -39,9 +40,8 @@ export default function ToDoInputForm({ addTodo }: TodoInputProps) {
 
 const S = {
   FormContainer: styled.form`
-    width: 30rem;
     display: flex;
-    gap: 1.2rem;
+    gap: 1rem;
   `,
 
   Input: styled.input`
