@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import styled from '@emotion/styled';
 import ToDoInputForm from '@/components/ToDoInputForm';
-import ToDoItemList from '@/components/ToDoItemList';
+import ToDoList from '@/components/ToDoList';
 import { Todo } from '@/types/todo';
 import { MainLayout } from '@/styles/layout/MainLayout';
 
@@ -16,7 +16,7 @@ export default function ToDoApp() {
     <MainLayout>
       <S.Container>
         <ToDoInputForm addTodo={addTodo} />
-        <ToDoItemList todoList={todoList} />
+        <ToDoList todoList={todoList} onChange={setTodoList} />
       </S.Container>
     </MainLayout>
   );
