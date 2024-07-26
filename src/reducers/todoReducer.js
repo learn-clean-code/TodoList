@@ -3,20 +3,20 @@ export const TODO_ACTIONS = {
   ADD_TODOS: "ADD_TODOS",
 }
 
+const todoActionHandlers = {
+  [TODO_ACTIONS.INIT_TODOS]: (state, action) => {
+    return action.data
+  },
+  [TODO_ACTIONS.ADD_TODOS]: (state, action) => {
+    return [...state, action.data]
+  },
+}
+
 export const todoReducer = (state, action) => {
-  let nextState
+  const handler = todoActionHandlers[action.type]
+  if (!handler) return state
 
-  switch (action.type) {
-    case TODO_ACTIONS.INIT_TODOS:
-      return action.data
-    case TODO_ACTIONS.ADD_TODOS: {
-      nextState = [...state, action.data]
-      break
-    }
-    default:
-      return state
-  }
-
+  const nextState = handler(state, action)
   saveTodosToLocalStorage(nextState)
   return nextState
 }
