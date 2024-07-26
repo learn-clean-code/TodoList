@@ -2,6 +2,7 @@ import { useState } from 'react';
 import styled from '@emotion/styled';
 import { Todo } from '@/types/todo';
 import { PLACEHOLDER } from '@/constants/MESSAGE';
+import { inputStyle } from '@/styles/commonStyle';
 
 interface TodoInputProps {
   addTodo: (todo: Todo) => void;
@@ -47,15 +48,7 @@ const S = {
   Input: styled.input`
     width: 100%;
     padding: 0.8rem 1rem;
-    border: none;
-    border-bottom: 1px solid #ccc;
-
-    :focus {
-      border-bottom: 1px solid ${({ theme }) => theme.color.main};
-    }
-    ::placeholder {
-      color: #b9b9b9;
-    }
+    ${inputStyle}
   `,
 
   AddBtn: styled.button`
