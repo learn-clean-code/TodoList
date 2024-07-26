@@ -4,11 +4,11 @@ import {
   todoReducer,
 } from "@/reducers/todoReducer"
 import type { IUseTodo } from "@/types/Todo.type"
-import { useReducer, useRef } from "react"
+import { nanoid } from "nanoid"
+import { useReducer } from "react"
 
 export const useTodo = (): IUseTodo => {
   const [todos, dispatchTodos] = useReducer(todoReducer, [])
-  const nextIdRef = useRef(0)
 
   const initTodos = () => {
     const storedTodos = loadTodosFromLocalStorage()
@@ -24,7 +24,7 @@ export const useTodo = (): IUseTodo => {
     dispatchTodos({
       type: TODO_ACTIONS.ADD_TODOS,
       data: {
-        id: nextIdRef.current++,
+        id: nanoid(),
         content,
         isDone: false,
       },

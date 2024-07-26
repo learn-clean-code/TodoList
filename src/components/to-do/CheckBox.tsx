@@ -1,5 +1,5 @@
 interface ICheckBoxProps {
-  id: number
+  id: string
   isChecked: boolean
   onChange: (checked: boolean) => void
 }
