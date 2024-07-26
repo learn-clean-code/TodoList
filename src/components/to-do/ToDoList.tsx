@@ -1,13 +1,19 @@
-import ToDoItem from "./ToDoItem"
+import type { ITodo } from "@/types/Todo.type"
+import TodoItem from "./TodoItem"
 
-function ToDoList({ toDos }) {
+interface ITodoListProps {
+  todos: ITodo[]
+}
+
+function TodoList({ todos }: ITodoListProps) {
+  console.log(todos)
   return (
     <div>
-      {toDos.map((toDo) => (
-        <ToDoItem key={toDo.id} {...toDo} />
+      {todos.map((todo) => (
+        <TodoItem key={todo.id} {...todo} />
       ))}
     </div>
   )
 }
 
-export default ToDoList
+export default TodoList

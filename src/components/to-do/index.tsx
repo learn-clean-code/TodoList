@@ -1,10 +1,11 @@
+import { useTodo } from "@/hooks/useTodo"
+import type { IUseTodo } from "@/types/Todo.type"
 import { useEffect } from "react"
-import { useTodo } from "../../hooks/useToDo"
 import AddTodoInput from "./AddTodoInput"
-import ToDoList from "./ToDoList"
+import TodoList from "./TodoList"
 
-function ToDo() {
-  const { toDos, handleCreateTodo, initTodos } = useTodo()
+function Todo() {
+  const { todos, handleCreateTodo, initTodos }: IUseTodo = useTodo()
 
   useEffect(() => {
     initTodos()
@@ -12,10 +13,10 @@ function ToDo() {
 
   return (
     <div className="px-7 py-9">
-      <ToDoList toDos={toDos} />
+      <TodoList todos={todos} />
       <AddTodoInput onCreate={handleCreateTodo} />
     </div>
   )
 }
 
-export default ToDo
+export default Todo

@@ -1,39 +1,39 @@
+import type { ITodo, TodoAction } from "@/types/Todo.type"
+
 export const TODO_ACTIONS = {
   INIT_TODOS: "INIT_TODOS",
   ADD_TODOS: "ADD_TODOS",
-}
+} as const
 
 const todoActionHandlers = {
-  [TODO_ACTIONS.INIT_TODOS]: (action) => {
+  [TODO_ACTIONS.INIT_TODOS]: (
+    state: ITodo[],
+    action: TodoAction & { type: "INIT_TODOS" },
+  ): ITodo[] => {
     return action.data
   },
-  [TODO_ACTIONS.ADD_TODOS]: (state, action) => {
+  [TODO_ACTIONS.ADD_TODOS]: (
+    state: ITodo[],
+    action: TodoAction & { type: "ADD_TODOS" },
+  ): ITodo[] => {
     return [...state, action.data]
   },
 }
 
-export const todoReducer = (state, action) => {
+export const todoReducer = (state: ITodo[], action: TodoAction): ITodo[] => {
   const handler = todoActionHandlers[action.type]
   if (!handler) return state
 
-  const nextState = handler(state, action)
+  const nextState = handler(state, action as any)
   saveTodosToLocalStorage(nextState)
   return nextState
 }
 
-export const loadTodosFromLocalStorage = () => {
-  const storedTodos = localStorage.getItem("toDos")
-  if (storedTodos) {
-    try {
-      return JSON.parse(storedTodos)
-    } catch (error) {
-      console.error("toDo데이터 parsing에 실패했습니다:", error)
-      return null
-    }
-  }
-  return null
+export const loadTodosFromLocalStorage = (): ITodo[] | null => {
+  const storedTodos = localStorage.getItem("todos")
+  return storedTodos ? JSON.parse(storedTodos) : null
 }
 
-const saveTodosToLocalStorage = (todos) => {
-  localStorage.setItem("toDos", JSON.stringify(todos))
+const saveTodosToLocalStorage = (todos: ITodo[]): void => {
+  localStorage.setItem("todos", JSON.stringify(todos))
 }

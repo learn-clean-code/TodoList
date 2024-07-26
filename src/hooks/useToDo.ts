@@ -1,26 +1,27 @@
-import { useReducer, useRef } from "react"
 import {
   TODO_ACTIONS,
   loadTodosFromLocalStorage,
   todoReducer,
-} from "../reducers/todoReducer"
+} from "@/reducers/todoReducer"
+import type { IUseTodo } from "@/types/Todo.type"
+import { useReducer, useRef } from "react"
 
-export const useTodo = () => {
-  const [toDos, dispatchToDos] = useReducer(todoReducer, [])
+export const useTodo = (): IUseTodo => {
+  const [todos, dispatchTodos] = useReducer(todoReducer, [])
   const nextIdRef = useRef(0)
 
   const initTodos = () => {
     const storedTodos = loadTodosFromLocalStorage()
     if (storedTodos) {
-      dispatchToDos({
+      dispatchTodos({
         type: TODO_ACTIONS.INIT_TODOS,
         data: storedTodos,
       })
     }
   }
 
-  const handleCreateTodo = (content) => {
-    dispatchToDos({
+  const handleCreateTodo = (content: string) => {
+    dispatchTodos({
       type: TODO_ACTIONS.ADD_TODOS,
       data: {
         id: nextIdRef.current++,
@@ -30,5 +31,5 @@ export const useTodo = () => {
     })
   }
 
-  return { toDos, handleCreateTodo, initTodos }
+  return { todos, handleCreateTodo, initTodos }
 }

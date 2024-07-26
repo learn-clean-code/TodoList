@@ -1,7 +1,8 @@
+import type { ITodo } from "@/types/Todo.type"
 import { useState } from "react"
 import CheckBox from "./CheckBox"
 
-function ToDoItem({ id, content, isDone }) {
+function TodoItem({ id, content, isDone }: ITodo) {
   const [isChecked, setIsChecked] = useState(isDone)
 
   const handleCheckButton = () => {
@@ -21,4 +22,4 @@ function ToDoItem({ id, content, isDone }) {
   )
 }
 
-export default ToDoItem
+export default TodoItem

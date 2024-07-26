@@ -1,13 +1,18 @@
-import { useState } from "react"
+import { ChangeEventHandler, FormEventHandler, useState } from "react"
 
-export const useInput = (initialValue = "", onSubmit) => {
+type OnSubmitFunction = (value: string) => void
+
+export const useInput = (
+  initialValue: string = "",
+  onSubmit: OnSubmitFunction,
+) => {
   const [value, setValue] = useState(initialValue)
 
-  const onChange = (e) => {
+  const onChange: ChangeEventHandler<HTMLInputElement> = (e) => {
     setValue(e.target.value)
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault()
     if (!value.trim()) return
     onSubmit(value)
