@@ -3,7 +3,7 @@ export const TODO_ACTIONS = {
   ADD_TODOS: "ADD_TODOS",
 }
 
-export function todoReducer(state, action) {
+export const todoReducer = (state, action) => {
   let nextState
 
   switch (action.type) {
@@ -21,7 +21,7 @@ export function todoReducer(state, action) {
   return nextState
 }
 
-export function loadTodosFromLocalStorage() {
+export const loadTodosFromLocalStorage = () => {
   const storedTodos = localStorage.getItem("toDos")
   if (storedTodos) {
     try {
@@ -34,6 +34,6 @@ export function loadTodosFromLocalStorage() {
   return null
 }
 
-function saveTodosToLocalStorage(todos) {
+const saveTodosToLocalStorage = (todos) => {
   localStorage.setItem("toDos", JSON.stringify(todos))
 }

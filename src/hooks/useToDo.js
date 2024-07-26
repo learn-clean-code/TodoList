@@ -1,15 +1,15 @@
-import { useCallback, useReducer, useRef } from "react"
+import { useReducer, useRef } from "react"
 import {
   TODO_ACTIONS,
   loadTodosFromLocalStorage,
   todoReducer,
 } from "../reducers/todoReducer"
 
-export function useTodo() {
+export const useTodo = () => {
   const [toDos, dispatchToDos] = useReducer(todoReducer, [])
   const nextIdRef = useRef(0)
 
-  const initTodos = useCallback(() => {
+  const initTodos = () => {
     const storedTodos = loadTodosFromLocalStorage()
     if (storedTodos) {
       dispatchToDos({
@@ -17,9 +17,9 @@ export function useTodo() {
         data: storedTodos,
       })
     }
-  }, [])
+  }
 
-  const handleCreateTodo = useCallback((content) => {
+  const handleCreateTodo = (content) => {
     dispatchToDos({
       type: TODO_ACTIONS.ADD_TODOS,
       data: {
@@ -28,7 +28,7 @@ export function useTodo() {
         isDone: false,
       },
     })
-  }, [])
+  }
 
   return { toDos, handleCreateTodo, initTodos }
 }
