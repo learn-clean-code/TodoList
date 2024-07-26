@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
+import { InputHTMLAttributes } from 'react';
 
-interface CheckProps {
+interface CheckProps extends InputHTMLAttributes<HTMLInputElement> {
   id: string;
 }
 
