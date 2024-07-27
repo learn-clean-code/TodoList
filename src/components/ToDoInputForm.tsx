@@ -1,0 +1,58 @@
+import { useState } from 'react';
+import styled from '@emotion/styled';
+import { Todo } from '@/types/todo';
+import { PLACEHOLDER } from '@/constants/MESSAGE';
+import { inputStyle } from '@/styles/commonStyle';
+
+interface TodoInputProps {
+  addTodo: (todo: Todo) => void;
+}
+
+export default function ToDoInputForm({ addTodo }: TodoInputProps) {
+  const [inputText, setInputText] = useState<string>('');
+  const isInputValid = inputText.trim().length > 1;
+
+  const handleSubmit: React.FormEventHandler<HTMLFormElement> = (e) => {
+    e.preventDefault();
+
+    const newTodo = {
+      id: `${Date.now()}`,
+      text: inputText,
+      isDone: false,
+    };
+    addTodo(newTodo);
+    setInputText('');
+  };
+
+  return (
+    <S.FormContainer onSubmit={handleSubmit}>
+      <S.Input
+        type="text"
+        value={inputText}
+        onChange={(e) => setInputText(e.target.value)}
+        placeholder={PLACEHOLDER.ADD_TASK}
+      />
+      <S.AddBtn type="submit" disabled={!isInputValid}>
+        Add
+      </S.AddBtn>
+    </S.FormContainer>
+  );
+}
+
+const S = {
+  FormContainer: styled.form`
+    display: flex;
+    gap: 1rem;
+  `,
+
+  Input: styled.input`
+    width: 100%;
+    padding: 0.8rem 1rem;
+    ${inputStyle}
+  `,
+
+  AddBtn: styled.button`
+    padding: 0.4rem;
+    color: ${({ theme }) => theme.color.main};
+  `,
+};
