@@ -3,7 +3,7 @@ import { TODO_ACTIONS } from "@/reducers/todoReducer"
 export interface ITodo {
   id: string
   content: string
-  isDone: boolean
+  isDone?: boolean
 }
 
 export type TodoReducer = (state: ITodo[], action: ITodoAction) => ITodo[]
@@ -17,6 +17,7 @@ export interface ITodoAction {
 
 export interface IUseTodo {
   todos: ITodo[]
-  handleCreateTodo: (content: string) => void
   initTodos: () => void
+  handleCreateTodo: (content: string) => void
+  handleUpdateTodo: (id: string, content: string) => void
 }

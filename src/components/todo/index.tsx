@@ -1,15 +1,10 @@
-import { useTodo } from "@/hooks/useTodo"
+import { useTodo } from "@/hooks/todo/useTodo"
 import type { IUseTodo } from "@/types/Todo.type"
-import { useEffect } from "react"
 import CreateTodo from "./CreateTodo"
 import TodoList from "./TodoList"
 
 function Todo() {
-  const { todos, handleCreateTodo, initTodos }: IUseTodo = useTodo()
-
-  useEffect(() => {
-    initTodos()
-  }, [])
+  const { todos, initTodos, handleCreateTodo }: IUseTodo = useTodo()
 
   return (
     <div className="relative w-1/2 mx-auto px-7 py-9 bg-white rounded shadow-md">
