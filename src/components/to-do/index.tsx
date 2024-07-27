@@ -12,7 +12,7 @@ function Todo() {
   }, [])
 
   return (
-    <div className="px-7 py-9">
+    <div className="relative w-1/2 mx-auto px-7 py-9 bg-white rounded shadow-md">
       <TodoList todos={todos} />
       <AddTodoInput onCreate={handleCreateTodo} />
     </div>

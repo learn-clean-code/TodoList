@@ -6,9 +6,8 @@ interface ITodoListProps {
 }
 
 function TodoList({ todos }: ITodoListProps) {
-  console.log(todos)
   return (
-    <div>
+    <div className="w-full pb-20">
       {todos.map((todo) => (
         <TodoItem key={todo.id} {...todo} />
       ))}

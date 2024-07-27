@@ -17,7 +17,7 @@ function AddTodoInput({ onCreate }: IAddTodoInputProps) {
         value={value}
         onChange={onChange}
       />
-      <button className="text-green-500" type="submit">
+      <button className="p-1 text-green-500" type="submit">
         추가
       </button>
     </form>
