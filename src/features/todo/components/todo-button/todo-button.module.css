@@ -8,13 +8,18 @@
   left: 50%;
   bottom: 0;
   transform: translate(-50%, 50%);
+  overflow: hidden;
+}
+
+.todo-button button {
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: 0.3s;
 }
 
-:global(.modal-open) .todo-button {
+/* :global(.modal-open) .todo-button {
   transform: translate(-50%, 50%) rotate(-45deg);
   background-color: var(--error);
-}
+} */
