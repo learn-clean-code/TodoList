@@ -4,8 +4,6 @@ import { TodoForm, TodoHeader, TodoLayout, TodoList } from "features/todo/compon
 export default function Todo() {
   const { todos, handleCreateTodo, handleUpdateTodo } = useTodo()
 
-  console.log(todos)
-
   return (
     <>
       <TodoLayout>
