@@ -1,0 +1,20 @@
+.todo-button {
+  position: absolute;
+  z-index: 10;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: var(--violet-100);
+  left: 50%;
+  bottom: 0;
+  transform: translate(-50%, 50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.3s;
+}
+
+:global(.modal-open) .todo-button {
+  transform: translate(-50%, 50%) rotate(-45deg);
+  background-color: var(--error);
+}
