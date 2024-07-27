@@ -4,7 +4,7 @@ import CreateTodo from "./CreateTodo"
 import TodoList from "./TodoList"
 
 function Todo() {
-  const { todos, initTodos, handleCreateTodo }: IUseTodo = useTodo()
+  const { todos, handleCreateTodo }: IUseTodo = useTodo()
 
   return (
     <div className="relative w-1/2 mx-auto px-7 py-9 bg-white rounded shadow-md">

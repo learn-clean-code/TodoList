@@ -12,16 +12,22 @@ export const useInput = (
     setValue(e.target.value)
   }
 
+  const reset = () => {
+    setValue(initialValue)
+  }
+
   const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
     e.preventDefault()
     if (!value.trim()) return
     onSubmit(value)
-    setValue("")
+    reset()
   }
 
   return {
     value,
+    setValue,
     onChange,
     handleSubmit,
+    reset,
   }
 }

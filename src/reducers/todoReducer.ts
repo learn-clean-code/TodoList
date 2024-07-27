@@ -11,11 +11,13 @@ const todoActionHandlers: Record<TodoActionType, TodoReducer> = {
     return action.payload as ITodo[]
   },
   [TODO_ACTIONS.ADD_TODO]: (state, action) => {
-    return [...state, action.payload as ITodo]
+    const newState = [...state, action.payload as ITodo]
+    localStorage.setItem("todos", JSON.stringify(newState))
+    return newState
   },
   [TODO_ACTIONS.UPDATE_TODO]: (state, action) => {
     const updatedTodo = action.payload as ITodo
-    return state.map((todo) =>
+    const newState = state.map((todo) =>
       todo.id === updatedTodo.id
         ? {
             ...todo,
@@ -23,23 +25,14 @@ const todoActionHandlers: Record<TodoActionType, TodoReducer> = {
           }
         : todo,
     )
+    localStorage.setItem("todos", JSON.stringify(newState))
+    return newState
   },
-}
-
-const saveTodosToLocalStorage = (todos: ITodo[]): void => {
-  localStorage.setItem("todos", JSON.stringify(todos))
 }
 
 export const todoReducer: TodoReducer = (state, action) => {
   const handler = todoActionHandlers[action.type]
   if (!handler) return state
 
-  const nextState = handler(state, action)
-  saveTodosToLocalStorage(nextState)
-  return nextState
-}
-
-export const loadTodosFromLocalStorage = (): ITodo[] | null => {
-  const storedTodos = localStorage.getItem("todos")
-  return storedTodos ? JSON.parse(storedTodos) : null
+  return handler(state, action)
 }

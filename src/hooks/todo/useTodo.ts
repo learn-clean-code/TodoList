@@ -1,14 +1,14 @@
-import { useReducer } from "react"
 import { todoReducer } from "@/reducers/todoReducer"
-import { useInitTodos } from "./useInitTodos"
-import { useCreateTodo } from "./useCreateTodo"
-import { useUpdateTodo } from "./useUpdateTodo"
 import type { IUseTodo } from "@/types/Todo.type"
+import { useReducer } from "react"
+import { useCreateTodo } from "./useCreateTodo"
+import { useInitTodo } from "./useInitTodo"
+import { useUpdateTodo } from "./useUpdateTodo"
 
 export const useTodo = (): IUseTodo => {
   const [todos, dispatchTodos] = useReducer(todoReducer, [])
 
-  const initTodos = useInitTodos(dispatchTodos)
+  const initTodos = useInitTodo(dispatchTodos)
   const handleCreateTodo = useCreateTodo(dispatchTodos)
   const handleUpdateTodo = useUpdateTodo(dispatchTodos)
 
