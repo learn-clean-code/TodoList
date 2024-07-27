@@ -1,7 +1,9 @@
 import { createContext, useContext } from "react"
-import Portal from "../portal/portal"
-import classes from "./modal.module.css"
+import { AnimatePresence, motion } from "framer-motion"
+import { Portal } from "shared/@common/components"
 import { LayoutType, ModalContextType } from "./modal.type"
+import { backdropAnimation, modalAnimation } from "shared/@common/animation"
+import classes from "./modal.module.css"
 
 const ModalContext = createContext<ModalContextType>({
   isOpenModal: false,
@@ -17,13 +19,24 @@ function useModalContext() {
 }
 
 export default function Modal(props: ModalContextType) {
-  if (!props.isOpenModal) return null
-
   return (
     <ModalContext.Provider value={{ ...props }}>
       <Portal elementId="modal-root">
-        <div className={classes.modal}>{props.children}</div>
+        <AnimatePresence>
+          {props.isOpenModal && (
+            <motion.div
+              className={classes.modal}
+              initial="hidden"
+              animate="visible"
+              exit="hidden"
+              variants={modalAnimation}
+            >
+              {props.children}
+            </motion.div>
+          )}
+        </AnimatePresence>
       </Portal>
+      <Backdrop />
     </ModalContext.Provider>
   )
 }
@@ -36,7 +49,18 @@ function Backdrop() {
   const modalContext = useModalContext()
   return (
     <Portal elementId="backdrop-root">
-      <div className={classes["modal-backdrop"]} onClick={modalContext.onCloseModal}></div>
+      <AnimatePresence>
+        {modalContext.isOpenModal && (
+          <motion.div
+            className={classes["modal-backdrop"]}
+            initial="hidden"
+            animate="visible"
+            exit="hidden"
+            variants={backdropAnimation}
+            onClick={modalContext.onCloseModal}
+          />
+        )}
+      </AnimatePresence>
     </Portal>
   )
 }
