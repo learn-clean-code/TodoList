@@ -11,12 +11,12 @@ function TodoItem({ id, isDone = false }: Omit<ITodo, "content">) {
   const { todos, handleUpdateTodo } = useTodo()
 
   const currentTodo = todos.find((todo) => todo.id === id)
-  const currentContent = currentTodo ? currentTodo.content : ""
+  const currentContent = currentTodo?.content ?? ""
 
   const {
     value: content,
     setValue,
-    onChange: handleEditChange,
+    onChange,
     handleSubmit,
   } = useInput(currentContent, (editedContent) => {
     handleUpdateTodo(id, editedContent)
@@ -26,10 +26,6 @@ function TodoItem({ id, isDone = false }: Omit<ITodo, "content">) {
   useEffect(() => {
     setValue(currentContent)
   }, [currentContent, setValue])
-
-  const handleCheckTodo = () => {
-    setIsChecked(!isChecked)
-  }
 
   const handleEditClick = () => {
     setIsEditing(true)
@@ -43,7 +39,7 @@ function TodoItem({ id, isDone = false }: Omit<ITodo, "content">) {
           <input
             type="text"
             value={content}
-            onChange={handleEditChange}
+            onChange={onChange}
             className="flex-grow border rounded px-2 py-1"
           />
           <button type="submit" className="ml-2">
@@ -56,7 +52,9 @@ function TodoItem({ id, isDone = false }: Omit<ITodo, "content">) {
             className={`flex-grow ${
               isChecked ? "text-gray-400 line-through" : "text-inherit"
             } cursor-pointer`}
-            onClick={handleCheckTodo}
+            onClick={() => {
+              setIsChecked(!isChecked)
+            }}
           >
             {content}
           </div>
