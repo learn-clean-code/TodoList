@@ -5,19 +5,19 @@ import CheckBox from "./CheckBox"
 function TodoItem({ id, content, isDone }: ITodo) {
   const [isChecked, setIsChecked] = useState(isDone)
 
-  const handleCheckButton = () => {
+  const handleCheckTodo = () => {
     setIsChecked(!isChecked)
   }
 
   return (
-    <div className="flex justify-between py-5">
+    <div className="flex gap-7 py-5">
+      <CheckBox id={id} isChecked={isChecked} onChange={setIsChecked} />
       <div
-        className={`${isChecked ? "text-gray-400 line-through" : "text-inherit"} cursor-pointer`}
-        onClick={handleCheckButton}
+        className={`flex-grow ${isChecked ? "text-gray-400 line-through" : "text-inherit"} cursor-pointer`}
+        onClick={handleCheckTodo}
       >
         {content}
       </div>
-      <CheckBox id={id} isChecked={isChecked} onChange={setIsChecked} />
     </div>
   )
 }
