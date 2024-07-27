@@ -1,4 +1,10 @@
-function CheckBox({ id, isChecked, onChange }) {
+interface ICheckBoxProps {
+  id: string
+  isChecked: boolean
+  onChange: (checked: boolean) => void
+}
+
+function CheckBox({ id, isChecked, onChange }: ICheckBoxProps) {
   const checkboxId = `checkbox-${id}`
 
   return (
