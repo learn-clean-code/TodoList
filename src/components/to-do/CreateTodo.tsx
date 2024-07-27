@@ -1,10 +1,10 @@
 import { useInput } from "@/hooks/useInput"
 
-interface IAddTodoInputProps {
+interface ICreateTodoProps {
   onCreate: (content: string) => void
 }
 
-function AddTodoInput({ onCreate }: IAddTodoInputProps) {
+function CreateTodo({ onCreate }: ICreateTodoProps) {
   const { value, onChange, handleSubmit } = useInput("", onCreate)
 
   return (
@@ -24,4 +24,4 @@ function AddTodoInput({ onCreate }: IAddTodoInputProps) {
   )
 }
 
-export default AddTodoInput
+export default CreateTodo

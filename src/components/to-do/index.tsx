@@ -1,7 +1,7 @@
 import { useTodo } from "@/hooks/useTodo"
 import type { IUseTodo } from "@/types/Todo.type"
 import { useEffect } from "react"
-import AddTodoInput from "./AddTodoInput"
+import CreateTodo from "./CreateTodo"
 import TodoList from "./TodoList"
 
 function Todo() {
@@ -14,7 +14,7 @@ function Todo() {
   return (
     <div className="relative w-1/2 mx-auto px-7 py-9 bg-white rounded shadow-md">
       <TodoList todos={todos} />
-      <AddTodoInput onCreate={handleCreateTodo} />
+      <CreateTodo onCreate={handleCreateTodo} />
     </div>
   )
 }

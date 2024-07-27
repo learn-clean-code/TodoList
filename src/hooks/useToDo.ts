@@ -15,15 +15,15 @@ export const useTodo = (): IUseTodo => {
     if (storedTodos) {
       dispatchTodos({
         type: TODO_ACTIONS.INIT_TODOS,
-        data: storedTodos,
+        payload: storedTodos,
       })
     }
   }
 
   const handleCreateTodo = (content: string) => {
     dispatchTodos({
-      type: TODO_ACTIONS.ADD_TODOS,
-      data: {
+      type: TODO_ACTIONS.ADD_TODO,
+      payload: {
         id: nanoid(),
         content,
         isDone: false,
