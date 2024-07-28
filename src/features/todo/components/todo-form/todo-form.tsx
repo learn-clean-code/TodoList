@@ -2,6 +2,7 @@ import { Input } from "shared/@common/components"
 import { useInput, useSubmit } from "shared/@common/hooks"
 import { greaterThanMinLength, isEmpty } from "shared/@common/utils"
 import type { Todo } from "features/todo/types"
+import { TODO_VALIDATE } from "shared/@common/constants"
 import classes from "./todo-form.module.css"
 
 interface Props {
@@ -11,7 +12,7 @@ interface Props {
 export default function TodoForm(props: Props) {
   const { value, onChangeValue, onResetValue, hasError } = useInput({
     defaultValue: "",
-    validateFn: (value: string) => greaterThanMinLength(value, 1),
+    validateFn: (value: string) => greaterThanMinLength(value, TODO_VALIDATE.inputLimit),
   })
 
   const isDisabled = isEmpty(value) || hasError

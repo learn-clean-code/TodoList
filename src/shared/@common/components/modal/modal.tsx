@@ -21,21 +21,21 @@ function useModalContext() {
 export default function Modal(props: ModalContextType) {
   return (
     <ModalContext.Provider value={{ ...props }}>
-      <Portal elementId="modal-root">
-        <AnimatePresence>
-          {props.isOpenModal && (
-            <motion.div
-              className={classes.modal}
-              initial="hidden"
-              animate="visible"
-              exit="hidden"
-              variants={modalAnimation}
-            >
-              {props.children}
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </Portal>
+      {/* <Portal elementId="modal-root"> */}
+      <AnimatePresence>
+        {props.isOpenModal && (
+          <motion.div
+            className={classes.modal}
+            initial="hidden"
+            animate="visible"
+            exit="hidden"
+            variants={modalAnimation}
+          >
+            {props.children}
+          </motion.div>
+        )}
+      </AnimatePresence>
+      {/* </Portal> */}
       <Backdrop />
     </ModalContext.Provider>
   )
@@ -47,21 +47,22 @@ function Layout(props: LayoutType) {
 
 function Backdrop() {
   const modalContext = useModalContext()
+
   return (
-    <Portal elementId="backdrop-root">
-      <AnimatePresence>
-        {modalContext.isOpenModal && (
-          <motion.div
-            className={classes["modal-backdrop"]}
-            initial="hidden"
-            animate="visible"
-            exit="hidden"
-            variants={backdropAnimation}
-            onClick={modalContext.onCloseModal}
-          />
-        )}
-      </AnimatePresence>
-    </Portal>
+    // <Portal elementId="backdrop-root">
+    <AnimatePresence>
+      {modalContext.isOpenModal && (
+        <motion.div
+          className={classes["modal-backdrop"]}
+          initial="hidden"
+          animate="visible"
+          exit="hidden"
+          variants={backdropAnimation}
+          onClick={modalContext.onCloseModal}
+        />
+      )}
+    </AnimatePresence>
+    // </Portal>
   )
 }
 
