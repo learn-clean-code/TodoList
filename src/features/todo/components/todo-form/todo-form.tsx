@@ -1,6 +1,5 @@
-import { FormEventHandler } from "react"
 import { Input } from "shared/@common/components"
-import { useInput } from "shared/@common/hooks"
+import { useInput, useSubmit } from "shared/@common/hooks"
 import { greaterThanMinLength, isEmpty } from "shared/@common/utils"
 import type { Todo } from "features/todo/types"
 import classes from "./todo-form.module.css"
@@ -15,10 +14,10 @@ export default function TodoForm(props: Props) {
     validateFn: (value: string) => greaterThanMinLength(value, 1),
   })
 
-  const handleSubmit: FormEventHandler<HTMLFormElement> = (event) => {
-    event.preventDefault()
+  const isDisabled = isEmpty(value) || hasError
 
-    if (isEmpty(value) || hasError) return
+  const onSubmit = useSubmit(() => {
+    if (isDisabled) return
 
     const newTodo: Todo = {
       id: new Date().getTime(),
@@ -28,15 +27,10 @@ export default function TodoForm(props: Props) {
 
     props.onCreateTodo(newTodo)
     onResetValue()
-  }
-
-  const isDisabled = isEmpty(value) || hasError
+  })
 
   return (
-    <form
-      className={`${classes["todo-form"]} ${hasError ? classes["todo-form__invalid"] : ""}`}
-      onSubmit={handleSubmit}
-    >
+    <form className={`${classes["todo-form"]} ${hasError ? classes["todo-form__invalid"] : ""}`} onSubmit={onSubmit}>
       <legend className={classes["todo-form__legend"]}>Add Task</legend>
       <Input
         type="text"
