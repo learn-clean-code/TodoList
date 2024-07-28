@@ -22,7 +22,12 @@ export default function TodoButton(props: Props) {
         </Modal.Layout>
       </Modal>
       <div className={classes["todo-button"]}>
-        <motion.button onClick={onToggle} variants={toggleAnimation} animate={isToggle ? "active" : "inActive"}>
+        <motion.button
+          onClick={onToggle}
+          variants={toggleAnimation}
+          animate={isToggle ? "active" : "inActive"}
+          initial={false}
+        >
           <HiPlus color="#fff" fontSize={24} />
         </motion.button>
       </div>
