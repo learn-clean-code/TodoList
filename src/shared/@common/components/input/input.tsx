@@ -17,6 +17,7 @@ export default function Input(props: Props) {
       className={props.className}
       checked={props.checked}
       onBlur={props.onBlur}
+      autoFocus={props.autoFocus}
     />
   )
 }

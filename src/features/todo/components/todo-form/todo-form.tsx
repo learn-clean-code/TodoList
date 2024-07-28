@@ -40,6 +40,7 @@ export default function TodoForm(props: Props) {
         value={value}
         onChange={onChangeValue}
         className={classes["todo-form__input"]}
+        autoFocus
       />
       {hasError && <p className={classes["todo-form__error"]}>최소 2글자 이상 입력해주세요.</p>}
       <button className={classes["todo-form__submit"]} disabled={isDisabled}>
