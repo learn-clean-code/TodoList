@@ -1,0 +1,29 @@
+.todo-header {
+  display: flex;
+  flex-direction: column;
+  gap: 5px 0;
+  border-bottom: 1px solid var(--black-100);
+  padding: 20px 20px 10px 20px;
+}
+
+.todo-header__layout {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.todo-header__date {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--violet-100);
+}
+
+.todo-header__day {
+  font-weight: 500;
+  color: var(--black-50);
+}
+
+.todo-header__tasks {
+  font-size: 12px;
+  color: var(--black-50);
+}
